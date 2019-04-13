@@ -1,6 +1,6 @@
 # vue-cli 多页面应用
 
-[原来](https://github.com/JayZangwill/vue-cli-multipage)的这个项目不再维护，因为是 fork 来的，没有 issues 功能，不利于后期维护，所以对项目做了迁移。
+[原来](https://github.com/JayZangwill/vue-cli-multipage)的这个项目不再维护，所以直接fork过来的
 
 ## 前言
 
