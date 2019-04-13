@@ -1,12 +1,16 @@
 # vue-cli 多页面应用
 
-[原来](https://github.com/JayZangwill/vue-cli-multipage)的这个项目不再维护，所以直接fork过来的
+有问题issues哦
 
 ## 前言
 
 这是用 vue-cli 2.9.3 版本`vue init webpack`命令生成的的应用，在此基础上加了些东西变成了多页面的
 
 如果想看vue-cli 3.x及以上的版本请移步[v3分支](https://github.com/JayZangwill/vue-multipage/tree/v3)
+
+## UI 兼容
+
+css 样式: 使用750px的设计稿，样式可以直接写px
 
 ## tip
 
