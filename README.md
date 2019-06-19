@@ -53,3 +53,92 @@ npm run dev
 # build for production with minification
 npm run build
 ```
+
+## 配置修改
+
+### build/utils.js
+
+```javascript
+// build/utils.js 添加方法
+const glob = require("glob");
+
+exports.getEntries = (path) => {
+  let entries = {};
+  glob.sync(path).forEach(entry => {
+    if(/(pages\/(?:.+[^.]))/.test(entry)) {
+      entries[RegExp.$1.slice(0,RegExp.$1.lastIndexOf('/'))] = entry;
+    }
+  })
+  return entries;
+}
+```
+
+### build/webpack.base.config.js
+
+```javascript
+const entry = utils.getEntries('./src/pages/**/*.js') // 获得入口js文件
+
+然后将`module.exports`里的 entry 改为我们定义的这个 ertry
+```
+
+### build/webpack.dev.config.js
+
+```javascript
+const entry = utils.getEntries('./src/pages/**/*.html') // 获得入口hmtl文件
+
+for (let pathname in entry) {
+    let filename = pathname.replace(/pages\//, '');
+    let conf = {
+        filename: `${filename}.html`,
+        template: entry[pathname],
+        inject: true,
+        minify: {
+            removeComments: true,
+            collapseWhitespace: true,
+            removeAttributeQuotes: true
+            // more options:
+            // https://github.com/kangax/html-minifier#options-quick-reference
+        },
+        // necessary to consistently work with multiple chunks via CommonsChunkPlugin
+        chunksSortMode: 'dependency'
+    }
+    if (pathname in devWebpackConfig.entry) {
+        conf.chunks = ['manifest', 'vendor', pathname];
+        conf.hash = true;
+    }
+    devWebpackConfig.plugins.push(new HtmlWebpackPlugin(conf));
+}
+
+遍历entry入口hmtl文件，构建对于数量的new HtmlWebpackPlugin(conf)，push到 devWebpackConfig中
+```
+
+### build/webpack.prod.config.js
+
+```javascript
+const entry = utils.getEntries('./src/pages/**/*.html') // 获得入口hmtl文件
+
+for (let pathname in entry) {
+    // let filename = pathname.replace(/pages\//, '');
+    let conf = {
+        filename: `${pathname}.html`,
+        template: entry[pathname],
+        inject: true,
+        minify: {
+            removeComments: true,
+            collapseWhitespace: true,
+            removeAttributeQuotes: true
+            // more options:
+            // https://github.com/kangax/html-minifier#options-quick-reference
+        },
+        // necessary to consistently work with multiple chunks via CommonsChunkPlugin
+        chunksSortMode: 'dependency'
+    }
+    if (pathname in webpackConfig.entry) {
+        conf.chunks = ['manifest', 'vendor', pathname];
+        conf.hash = true;
+    }
+    webpackConfig.plugins.push(new HtmlWebpackPlugin(conf));
+}
+
+prod文件配置修改同上。保证webpackConfig实例对象输出多页面。
+```
