@@ -1,5 +1,8 @@
 # vue多页面应用
 
+![passing](https://img.shields.io/badge/build-passing-brightgreen.svg)
+![MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)
+
 ## 前言
 
 这是用 vue-cli 2.9.3 版本`vue init webpack`命令生成的的应用，在此基础上加了些东西变成了多页面的
