@@ -8,7 +8,7 @@
 
 ## tip
 
-1.  如果想新建页面的话需要在`src/pages`里新建文件夹，且文件夹里必须包括一个.html 文件，.js 文件，.vue 文件作为入口文件
+1.  **如果想新建页面的话需要在`src/pages`里新建文件夹，且文件夹里必须包括一个.html 文件，.js 文件，.vue 文件作为入口文件**
 2.  `npm run dev`的时候提示打开 localhost:8080 即可
 3.  为了方便维护`npm run build`出来的 html 文件是放在 pages 文件夹里的
 4.  css 样式: 使用750px的设计稿，样式可以直接写px, 使用postcss 插件转换 px 为 rem，高保真还原设计图
