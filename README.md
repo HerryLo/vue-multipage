@@ -1,7 +1,5 @@
 # vue-cli 多页面应用
 
-有问题issues哦, （目前存在一个问题，引入外部图片图片地址有问题）
-
 ## 前言
 
 这是用 vue-cli 2.9.3 版本`vue init webpack`命令生成的的应用，在此基础上加了些东西变成了多页面的
@@ -10,14 +8,13 @@
 
 ## UI 兼容
 
-css 样式: 使用750px的设计稿，样式可以直接写px
+css 样式: 使用750px的设计稿，样式可以直接写px, 使用postcss 插件转换 px 为 rem，高保真还原设计图
 
 ## tip
 
-1.  如果想新建页面的话需要在`src/module`里新建文件夹，且文件夹里必须包括一个.html 文件，.js 文件，.vue 文件作为入口文件
+1.  如果想新建页面的话需要在`src/pages`里新建文件夹，且文件夹里必须包括一个.html 文件，.js 文件，.vue 文件作为入口文件
 2.  `npm run dev`的时候提示打开 localhost:8080 即可
-3.  为了方便维护`npm run build`出来的 html 文件是放在 module 文件夹里的
-4. 如果想修改`src`里的`module`文件夹名字的话，需要将三个`config.js`配置文件里的getEntries函数的参数`module`改成你想改的名字，同时这个函数的函数体里的`module`也需要更改。
+3.  为了方便维护`npm run build`出来的 html 文件是放在 pages 文件夹里的
 
 ## Build Setup
 
@@ -32,7 +29,7 @@ npm run dev
 npm run build
 ```
 
-**重要：** 首页是localhost:8080/module/index.html 而不是localhost:8080
+**重要：** 首页是localhost:8080/pages/index.html 而不是localhost:8080
 
 ## 修改的地方
 
@@ -41,7 +38,7 @@ npm run build
 ```javascript
 //6行添加
 const glob = require("glob");
-const entry = getEntries("./src/module/**/*.js"); // 获得入口js文件
+const entry = getEntries("./src/pages/**/*.js"); // 获得入口js文件
 
 function resolve(dir) {
   return path.join(__dirname, "..", dir);
@@ -50,7 +47,7 @@ function resolve(dir) {
 function getEntries(path) {
   let entries = {};
   glob.sync(path).forEach(entry => {
-    if (/(module\/(?:.+[^.]))/.test(entry)) {
+    if (/(pages\/(?:.+[^.]))/.test(entry)) {
       entries[RegExp.$1.replace(/\/\w+\b/, "")] = entry;
     }
   });
@@ -65,7 +62,7 @@ function getEntries(path) {
 ```javascript
 //12行添加
 const glob = require("glob");
-const entry = getEntries("./src/module/**/*.js"); // 获得入口js文件
+const entry = getEntries("./src/pages/**/*.js"); // 获得入口js文件
 
 function resolve(dir) {
   return path.join(__dirname, "..", dir);
@@ -100,7 +97,7 @@ for (let pathname in entry) {
 function getEntries(path) {
   let entries = {};
   glob.sync(path).forEach(entry => {
-    if (/(module\/(?:.+[^.]))/.test(entry)) {
+    if (/(pages\/(?:.+[^.]))/.test(entry)) {
       entries[RegExp.$1.replace(/\/\w+\b/, "")] = entry;
     }
   });
@@ -113,7 +110,7 @@ function getEntries(path) {
 ```javascript
 //13行添加
 const glob = require("glob");
-const entry = getEntries("./src/module/**/*.html"); // 获得入口hmtl文件
+const entry = getEntries("./src/pages/**/*.html"); // 获得入口hmtl文件
 
 //在module.exports = webpackConfig前添加
 for (let pathname in entry) {
@@ -141,7 +138,7 @@ for (let pathname in entry) {
 function getEntries(path) {
   let entries = {};
   glob.sync(path).forEach(entry => {
-    if (/(module\/(?:.+[^.]))/.test(entry)) {
+    if (/(pages\/(?:.+[^.]))/.test(entry)) {
       entries[RegExp.$1.replace(/\/\w+\b/, "")] = entry;
     }
   });
