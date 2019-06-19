@@ -1,7 +1,6 @@
 # vue多页面应用
 
 ![passing](https://img.shields.io/badge/build-passing-brightgreen.svg)
-![MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)
 
 ## 前言
 
