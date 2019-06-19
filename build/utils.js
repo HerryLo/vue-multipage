@@ -1,5 +1,6 @@
 'use strict'
 const path = require('path')
+const glob = require('glob')
 const config = require('../config')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const packageConfig = require('../package.json')
@@ -47,7 +48,8 @@ exports.cssLoaders = function (options) {
     if (options.extract) {
       return ExtractTextPlugin.extract({
         use: loaders,
-        fallback: 'vue-style-loader'
+        fallback: 'vue-style-loader',
+        publicPath: '/'
       })
     } else {
       return ['vue-style-loader'].concat(loaders)
@@ -98,4 +100,15 @@ exports.createNotifierCallback = () => {
       icon: path.join(__dirname, 'logo.png')
     })
   }
+}
+
+
+exports.getEntries = (path) => {
+  let entries = {};
+  glob.sync(path).forEach(entry => {
+    if(/(pages\/(?:.+[^.]))/.test(entry)) {
+      entries[RegExp.$1.slice(0,RegExp.$1.lastIndexOf('/'))] = entry;
+    }
+  })
+  return entries;
 }
