@@ -1,4 +1,4 @@
-# vue多页面应用
+# Vue multiPage
 
 ![passing](https://img.shields.io/badge/build-passing-brightgreen.svg)
 
