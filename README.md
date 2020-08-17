@@ -63,9 +63,9 @@ npm run build
 ### build/utils.js
 
 ```javascript
-// build/utils.js 添加方法
 const glob = require("glob");
 
+// 获取pages目录下，获取对应的文件地址
 exports.getEntries = (path) => {
   let entries = {};
   glob.sync(path).forEach(entry => {
@@ -80,15 +80,22 @@ exports.getEntries = (path) => {
 ### build/webpack.base.config.js
 
 ```javascript
-const entry = utils.getEntries('./src/pages/**/*.js') // 获得入口js文件
+// 获取所有页面的js文件地址
+const entry = utils.getEntries('./src/pages/**/*.js') // 
 
-然后将`module.exports`里的 entry 改为我们定义的这个 ertry
+module.exports = {
+    context: path.resolve(__dirname, '../'),
+    entry: entry,
+    
+    // 省略
+    ....
+}
 ```
 
 ### build/webpack.dev.config.js
 
 ```javascript
-const entry = utils.getEntries('./src/pages/**/*.html') // 获得入口hmtl文件
+const entry = utils.getEntries('./src/pages/**/*.html') // 获得入口hmtl文件地址
 
 for (let pathname in entry) {
     let filename = pathname.replace(/pages\//, '');
@@ -119,7 +126,8 @@ for (let pathname in entry) {
 ### build/webpack.prod.config.js
 
 ```javascript
-const entry = utils.getEntries('./src/pages/**/*.html') // 获得入口hmtl文件
+// 获取
+const entry = utils.getEntries('./src/pages/**/*.html')
 
 for (let pathname in entry) {
     // let filename = pathname.replace(/pages\//, '');
