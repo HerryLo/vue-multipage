@@ -15,7 +15,7 @@
 3.  为了方便维护`npm run build`出来的 html 文件是放在 pages 文件夹里的
 4.  css 样式: 使用750px的设计稿，样式可以直接写px, 使用postcss 插件转换 px 为 rem，高保真还原设计图
 
-注意⚠️：目前只有一个activity_rule 页面，不存在index首页，所以访问http://localhost:12345/，是找不到页面的！！
+注意⚠️：目前只有一个activity_rule 页面，不存在index首页，所以访问localhost:12345，是找不到页面的！！
 
 ## 目录结构:
 ```
