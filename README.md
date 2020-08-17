@@ -4,7 +4,7 @@
 
 ## 前言
 
-这是用 vue-cli 2.9.3 版本`vue init webpack`命令生成的的应用，在此基础上修改为多页面应用。[vue-cli@2.0 文档](https://github.com/vuejs/vue-cli)
+这是用 **vue-cli 2.9.3** 版本`vue init webpack`命令生成的的应用，在此基础上修改为多页面应用。[vue-cli@2.0 文档](https://github.com/vuejs/vue-cli)
 
 如果需要vue-cli 3.x及以上的版本请移步[vue-cli@3.0 配置文档](https://cli.vuejs.org/zh/guide/#%E8%AF%A5%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%BB%84%E4%BB%B6)，vue-cli@3.0有提供多页面配置教程
 
