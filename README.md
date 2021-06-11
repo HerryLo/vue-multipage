@@ -155,6 +155,6 @@ for (let pathname in entry) {
 prod文件配置修改同上。保证webpackConfig实例对象输出多页面。
 ```
 
-### vx欢迎交流
+### vx备注 加群交流
 
 <img width="300" height="300" center src="https://didiheng.com/image/IMG_0574.JPG" />
